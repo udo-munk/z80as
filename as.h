@@ -3,6 +3,7 @@
  * Header file, used by all
  * parts of the assembler.
  */
+#include	<stdlib.h>
 #include	<stdio.h>
 #include	<ctype.h>
 #include	<setjmp.h>
@@ -165,4 +166,27 @@ extern	SYM	*uhash[];
 extern	int	lflag;
 extern	jmp_buf	env;
 extern	VALUE	dot;
-extern	SYM	*lookup();
+
+extern	SYM	*lookup(char *, SYM *[], int );
+extern	void	mkname(char *, char *, char *);
+extern	void	syminit(void), asmline(void), list(void), outeof(void);
+extern	void	qerr(void), asmld(void);
+extern	int	getnb(void);
+extern	void	getid(char *, register int), comma(void);
+extern	int	ccfetch(ADDR *);
+extern	void	err(char), aerr(void), uerr(char *);
+extern	void	getaddr(register ADDR *);
+extern	void	istuser(ADDR *);
+extern	void	unget(char), outab(int);
+extern	void	outaw(int), outop(register int, register ADDR *);
+extern	char	get(void);
+extern	void	storerror(register int);
+extern	int	symeq(register char *, register char *);
+extern	void	symcopy(register char *, register char *);
+extern	void	expr1(register ADDR *, int, int);
+extern	void	expr2(register ADDR *);
+extern	void	isokaors(register ADDR *, int);
+extern	void	expr3(register ADDR *, int);
+extern	void	outbyte(int), outflush(void), outhex(int);
+extern	void	list1(register char *, register int, int);
+extern	int	symhash(register char *);

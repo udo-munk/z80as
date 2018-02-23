@@ -12,7 +12,7 @@
  * Honour the listing mode stored
  * in the "lmode".
  */
-list()
+void list(void)
 {
 	register char	*wp;
 	register int	nb;
@@ -49,9 +49,7 @@ list()
  * and the extra lines in BLIST and
  * WLIST mode.
  */
-list1(wp, nb, f)
-register char	*wp;
-register int	nb;
+void list1(register char *wp, register int nb, int f)
 {
 	register int	d;
 	register int	i;

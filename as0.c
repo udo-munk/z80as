@@ -24,8 +24,7 @@ int	pass;
 int	line;
 jmp_buf	env;
 
-main(argc, argv)
-char	*argv[];
+int main(int argc, char *argv[])
 {
 	register char	*ifn;
 	register char	*p;
@@ -102,10 +101,7 @@ char	*argv[];
  * type. The finished name is copied
  * into the "dfn" buffer.
  */
-mkname(dfn, sfn, dft)
-char	*dfn;
-char	*sfn;
-char	*dft;
+void mkname(char *dfn, char *sfn, char *dft)
 {
 	register char	*p1;
 	register char	*p2;
@@ -126,6 +122,6 @@ char	*dft;
 		*p2++ = c;
 	*p2++ = '.';
 	p1 = dft;
-	while (*p2++ = *p1++)
+	while ((*p2++ = *p1++))
 		;
 }

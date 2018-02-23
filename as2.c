@@ -12,8 +12,7 @@
  * and take the result modulo the table
  * size" algorithm is used.
  */
-symhash(id)
-register char	*id;
+int symhash(register char *id)
 {
 	register int	hash;
 	register int	n;
@@ -32,7 +31,7 @@ register char	*id;
  * the error directly. Otherwise save
  * the error in the error buffer.
  */
-err(c)
+void err(char c)
 {
 	if (pass != 0) {
 		if (lflag != 0)
@@ -51,8 +50,7 @@ err(c)
  * prints the name of the identifier
  * "id" in the message.
  */
-uerr(id)
-char	*id;
+void uerr(char *id)
 {
 	if (pass != 0) {
 		if (lflag != 0)
@@ -65,7 +63,7 @@ char	*id;
 /*
  * The "a" error is common.
  */
-aerr()
+void aerr(void)
 {
 	err('a');
 }
@@ -73,7 +71,7 @@ aerr()
 /*
  * Ditto the "q" error.
  */
-qerr()
+void qerr(void)
 {
 	err('q');
 }
@@ -84,8 +82,7 @@ qerr()
  * Check that it is not already
  * there.
  */
-storerror(c)
-register int	c;
+void storerror(register int c)
 {
 	register char	*p;
 
@@ -104,9 +101,7 @@ register int	c;
  * The character "c" is the first
  * character of the name.
  */
-getid(id, c)
-register int	c;
-char		*id;
+void getid(char *id, register int c)
 {
 	register char	*p;
 
@@ -137,10 +132,7 @@ char		*id;
  * If not there, and "cf" is
  * true, create it.
  */
-SYM	*
-lookup(id, htable, cf)
-char	*id;
-SYM	*htable[];
+SYM *lookup(char *id, SYM *htable[], int cf)
 {
 	register SYM	*sp;
 	register int	hash;
@@ -172,9 +164,7 @@ SYM	*htable[];
  * bytes. True return if the names
  * are exactly equal.
  */
-symeq(p1, p2)
-register char	*p1;
-register char	*p2;
+int symeq(register char *p1, register char *p2)
 {
 	register int	n;
 
@@ -191,9 +181,7 @@ register char	*p2;
  * that make up the name of a
  * symbol.
  */
-symcopy(p1, p2)
-register char	*p1;
-register char	*p2;
+void symcopy(register char *p1, register char *p2)
 {
 	register int	n;
 
@@ -208,7 +196,7 @@ register char	*p2;
  * from the input buffer. Do not
  * step past the newline.
  */
-get()
+char get(void)
 {
 	register int	c;
 
@@ -223,7 +211,7 @@ get()
  * the input buffer. Do not step
  * past the newline.
  */
-getnb()
+int getnb(void)
 {
 	register int	c;
 
@@ -237,7 +225,7 @@ getnb()
 /*
  * Put a character back.
  */
-unget(c)
+void unget(char c)
 {
 	if (c != '\n')
 		--ip;

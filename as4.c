@@ -17,7 +17,7 @@ char	*hexp	= &hexb[0];
  * standard Z-80 ordering (low
  * byte then high byte).
  */
-outaw(w)
+void outaw(int w)
 {
 	outab(w);
 	outab(w >> 8);
@@ -28,7 +28,7 @@ outaw(w)
  * byte to the code and listing
  * streams.
  */
-outab(b)
+void outab(int b)
 {
 	if (pass != 0) {
 		if (cp < &cb[NCODE])
@@ -43,7 +43,7 @@ outab(b)
  * hex item at the very end of 
  * the object file.
  */
-outeof()
+void outeof(void)
 {
 	outflush();
 	fprintf(ofp, ":00000001FF\n");
@@ -56,7 +56,7 @@ outeof()
  * checksumming. Remember the load
  * address for flushing.
  */
-outbyte(b)
+void outbyte(int b)
 {
 	if (hexp>=&hexb[NHEX] || hexpc!=dot) {
 		outflush();
@@ -76,7 +76,7 @@ outbyte(b)
  * out the length word and the
  * checksum byte.
  */
-outflush()
+void outflush(void)
 {
 	register char	*p;
 	register int	b;
@@ -107,7 +107,7 @@ outflush()
  * of case problems on VMS.
  * Upper case ascii.
  */
-outhex(b)
+void outhex(int b)
 {
 	static	char	hex[] = {
 		'0',	'1',	'2',	'3',

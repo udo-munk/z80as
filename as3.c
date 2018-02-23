@@ -19,8 +19,7 @@
  * there is no address field or
  * if the syntax is bad.
  */
-getaddr(ap)
-register ADDR	*ap;
+void getaddr(register ADDR *ap)
 {
 	register int	reg;
 	register int	c;
@@ -68,8 +67,7 @@ register ADDR	*ap;
  * The "paren" argument is true if
  * the expression is in parentheses.
  */
-expr1(ap, lpri, paren)
-register ADDR	*ap;
+void expr1(register ADDR *ap, int lpri, int paren)
 {
 	register int	c;
 	register int	opri;
@@ -116,8 +114,7 @@ register ADDR	*ap;
  * real work, part II. Read
  * in terminals.
  */
-expr2(ap)
-register ADDR	*ap;
+void expr2(register ADDR *ap)
 {
 	register int	c;
 	register SYM	*sp;
@@ -126,19 +123,19 @@ register ADDR	*ap;
 
 	c = getnb();
 	if (c == '[') {
-		expr1(ap, LOPRI);
+		expr1(ap, LOPRI, 0);
 		if (getnb() != ']')
 			qerr();
 		return;
 	}
 	if (c == '-') {
-		expr1(ap, HIPRI);
+		expr1(ap, HIPRI, 0);
 		istuser(ap);
 		ap->a_value = -ap->a_value;
 		return;
 	}
 	if (c == '~') {
-		expr1(ap, HIPRI);
+		expr1(ap, HIPRI, 0);
 		istuser(ap);
 		ap->a_value = ~ap->a_value;
 		return;
@@ -185,9 +182,7 @@ register ADDR	*ap;
  * The radix is determined, and the number is
  * converted to binary.
  */
-expr3(ap, c)
-register ADDR	*ap;
-register int	c;
+void expr3(register ADDR *ap, int c)
 {
 	register char	*np1;
 	register char	*np2;
@@ -242,8 +237,7 @@ register int	c;
  * by "ap" can participate in an addition
  * or a subtraction.
  */
-isokaors(ap, paren)
-register ADDR	*ap;
+void isokaors(register ADDR *ap, int paren)
 {
 	register int	mode;
 	register int	reg;

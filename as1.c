@@ -35,7 +35,7 @@
  * right out, and also stashed in the
  * "cb" for the listing.
  */
-asmline()
+void asmline(void)
 {
 	register SYM	*sp;
 	register int	c;
@@ -457,7 +457,7 @@ loop:
  * indexing. This layer just screens out the many
  * cases, and emits the correct bytes.
  */
-asmld()
+void asmld(void)
 {
 	int	mdst;
 	int	rdst;
@@ -566,12 +566,7 @@ asmld()
  * pointer "ap" if indexing is required, otherwise just
  * pass the "iap" through.
  */
-ADDR	*
-getldaddr(ap, modep, regp, iap)
-ADDR	*ap;
-int	*modep;
-int	*regp;
-ADDR	*iap;
+ADDR *getldaddr(ADDR *ap, int *modep, int *regp, ADDR *iap)
 {
 	register int	mode;
 	register int	reg;
@@ -619,9 +614,7 @@ ADDR	*iap;
  * the address mode to see if the bytes
  * are needed.
  */
-outop(op, ap)
-register int	op;
-register ADDR	*ap;
+void outop(register int op, register ADDR *ap)
 {
 	register int	needisp;
 
@@ -650,7 +643,7 @@ register ADDR	*ap;
  * in the input must be a comma
  * or it is a fatal error.
  */
-comma()
+void comma(void)
 {
 	if (getnb() != ',')
 		qerr();
@@ -661,8 +654,7 @@ comma()
  * an ADDR is TUSER. If not, give
  * an error.
  */
-istuser(ap)
-register ADDR	*ap;
+void istuser(ADDR *ap)
 {
 	if ((ap->a_type&TMMODE) != TUSER)
 		aerr();
@@ -675,8 +667,7 @@ register ADDR	*ap;
  * be interpreted as a condition. The
  * "c" condition is a pain.
  */
-ccfetch(ap)
-register ADDR	*ap;
+int ccfetch(ADDR *ap)
 {
 	if (ap->a_type == (TBR|C))
 		return (CC);
