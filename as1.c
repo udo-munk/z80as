@@ -599,7 +599,7 @@ ADDR	*iap;
 
 	case TWR|IY:
 		outab(0xFD);
-		reg == HL;
+		reg = HL;
 		break;
 
 	case TWR|AF:
