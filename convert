@@ -1,0 +1,127 @@
+s/	ACI	/	ADC	A,/
+s/	ADC	M/	ADC	(HL)/
+s/	ADC	/	ADC	A,/
+s/	ADD	M/	ADD	(HL)/
+s/	ADD	/	ADD	A,/
+s/	ADI	/	ADD	A,/
+s/	ANA	M/	ANA	(HL)/
+s/	ANA	/	AND	/
+s/	ANI	/	AND	/
+s/	CP	/	CALL	P,/
+s/	CC	/	CALL	C,/
+s/	CM	/	CALL	M,/
+s/	CMA/	CPL/
+s/	CMC/	CCF/
+s/	CMP	M/	CMP	(HL)/
+s/	CMP	/	CP	/
+s/	CNC	/	CALL	NC,/
+s/	CNZ	/	CALL	NZ,/
+s/	CPE	/	CALL	PE,/
+s/	CPI	/	CP	/
+s/	CPO	/	CALL	PO,/
+s/	CZ	/	CALL	Z,/
+s/	DAD	B/	ADD	HL,BC/
+s/	DAD	D/	ADD	HL,DE/
+s/	DAD	H/	ADD	HL,HL/
+s/	DAD	SP/	ADD	HL,SP/
+s/	DCX	B/	DEC	BC/
+s/	DCX	D/	DEC	DE/
+s/	DCX	H/	DEC	HL/
+s/	DCX	SP/	DEC	SP/
+s/	DCR	M/	DCR	(HL)/
+s/	DCR	/	DEC	/
+s/	HLT/	HALT/
+s/	IN	\(.*\)	/	IN	A,(\1)	/
+s/	IN	\(.*\)$/	IN	A,(\1)/
+s/	INR	M/	INR	(HL)/
+s/	INR	/	INC	/
+s/	INX	B/	INC	BC/
+s/	INX	D/	INC	DE/
+s/	INX	H/	INC	HL/
+s/	INX	SP/	INC	SP/
+s/	JP	/	JP	P,/
+s/	JC	/	JP	C,/
+s/	JM	/	JP	M,/
+s/	JNC	/	JP	NC,/
+s/	JNZ	/	JP	NZ,/
+s/	JPE	/	JP	PE,/
+s/	JPO	/	JP	PO,/
+s/	JZ	/	JP	Z,/
+s/	JMP	/	JP	/
+s/	LDA	\(.*\)	/	LD	A,(\1)	/
+s/	LDA	\(.*\)$/	LD	A,(\1)/
+s/	LDAX	B/	LD	A,(BC)/
+s/	LDAX	D/	LD	A,(DE)/
+s/	LHLD	\(.*\)	/	LD	HL,(\1)	/
+s/	LHLD	\(.*\)$/	LD	HL,(\1)/
+s/	LXI	SP/	LD	SP/
+s/	LXI	B/	LD	BC/
+s/	LXI	D/	LD	DE/
+s/	LXI	H/	LD	HL/
+
+s/	MOV	/	LD	/
+t l0
+b l1
+: l0
+s/	M/	(HL)/
+s/,M/,(HL)/
+: l1
+
+s/	MVI	M/	MVI	(HL)/
+s/	MVI	/	LD	/
+s/	ORA	M/	ORA	(HL)/
+s/	ORA	/	OR	/
+s/	ORI	/	OR	/
+s/	OUT	\(.*\)	/	OUT	(\1),A	/
+s/	OUT	\(.*\)$/	OUT	(\1),A/
+s/	PCHL	/	JP	(HL)	/
+s/	PCHL$/	JP	(HL)/
+s/	POP	B/	POP	BC/
+s/	POP	D/	POP	DE/
+s/	POP	H/	POP	HL/
+s/	POP	PSW/	POP	AF/
+s/	PUSH	B/	PUSH	BC/
+s/	PUSH	D/	PUSH	DE/
+s/	PUSH	H/	PUSH	HL/
+s/	PUSH	PSW/	PUSH	AF/
+s/	RAL/	RLA/
+s/	RAR/	RRA/
+s/	RC	/	RET	C/
+s/	RC$/	RET	C/
+s/	RLC/	RLCA/
+s/	RM	/	RET	M/
+s/	RM$/	RET	M/
+s/	RNC	/	RET	NC/
+s/	RNC$/	RET	NC/
+s/	RNZ	/	RET	NZ/
+s/	RNZ$/	RET	NZ/
+s/	RP	/	RET	P/
+s/	RP$/	RET	P/
+s/	RPE	/	RET	PE/
+s/	RPE$/	RET	PE/
+s/	RPO	/	RET	PO/
+s/	RPO$/	RET	PO/
+s/	RRC/	RRCA/
+s/	RZ	/	RET	Z/
+s/	RZ$/	RET	Z/
+s/	SBB	M/	SBB	(HL)/
+s/	SBB	/	SBC	A,/
+s/	SBI	/	SBC	A,/
+s/	SHLD	\(.*\)	/	LD	(\1),HL	/
+s/	SHLD	\(.*\)$/	LD	(\1),HL/
+s/	SPHL	/	LD	SP,HL/
+s/	STA	\(.*\)	/	LD	(\1),A	/
+s/	STA	\(.*\)$/	LD	(\1),A/
+s/	STAX	B/	LD	(BC),A/
+s/	STAX	D/	LD	(DE),A/
+s/	STC/	SCF/
+s/	SUB	M/	SUB	(HL)/
+s/	SUI	/	SUB	/
+s/	XCHG	/	EX	DE,HL/
+s/	XCHG$/	EX	DE,HL/
+s/	XRA	M/	XRA	(HL)/
+s/	XRA	/	XOR	/
+s/	XRI	/	XOR	/
+s/	XTHL	/	EX	(SP),HL/
+s/	XTHL$/	EX	(SP),HL/
+s/		*)/)/
